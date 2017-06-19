@@ -2213,7 +2213,7 @@
 					"justifyContent": "FLEX_START",
 					"flexWrap": "NOWRAP",
 					"flexDirection": "ROW",
-					"positionType": "ABSOLUTE",
+					"positionType": "RELATIVE",
 					"right": 0
 				},
 				"name": "customerRow",
@@ -2231,7 +2231,7 @@
 					"justifyContent": 0,
 					"flexWrap": 0,
 					"flexDirection": 2,
-					"positionType": 1,
+					"positionType": 0,
 					"right": 0
 				},
 				"font": {}
@@ -3017,7 +3017,7 @@
 					"justifyContent": "FLEX_START",
 					"flexWrap": "NOWRAP",
 					"flexDirection": "COLUMN",
-					"positionType": "ABSOLUTE",
+					"positionType": "RELATIVE",
 					"right": 0,
 					"bottom": 0
 				},
@@ -3038,7 +3038,7 @@
 					"justifyContent": 0,
 					"flexWrap": 0,
 					"flexDirection": 0,
-					"positionType": 1,
+					"positionType": 0,
 					"right": 0,
 					"bottom": 0
 				},
@@ -3302,7 +3302,7 @@
 					"justifyContent": "FLEX_START",
 					"flexWrap": "NOWRAP",
 					"flexDirection": "ROW",
-					"positionType": "ABSOLUTE",
+					"positionType": "RELATIVE",
 					"right": 0,
 					"bottom": 0
 				},
@@ -3322,7 +3322,7 @@
 					"justifyContent": 0,
 					"flexWrap": 0,
 					"flexDirection": 2,
-					"positionType": 1,
+					"positionType": 0,
 					"right": 0,
 					"bottom": 0
 				},

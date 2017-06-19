@@ -64,14 +64,19 @@ const SliderDrawer_ = extend(SliderDrawer)(
 		mimicPressed(this.flSettings, function() {
 			hide();
 			Router.go("pgSettings");
-			moveHighlight(3);
+			moveHighlight(3, self.flSettings);
 		}, touchControl);
 
-		function moveHighlight(index) {
+		function moveHighlight(index, item) {
 			var target = {
 				top: 30 + ((30 + 22) * index),
 				height: 22
 			};
+			
+			if(item) {
+				target = item; //put break point here add item to watch. it should have height
+			}
+			
 			var flHighlightHeight = 47.42;
 
 			var top = Math.round(target.top + ((target.height - flHighlightHeight) / 2), 2);

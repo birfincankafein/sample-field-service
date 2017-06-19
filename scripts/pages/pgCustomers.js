@@ -256,6 +256,4 @@ const pgCustomers = extend(pgCustomersDesign)(
         }
     });
 
-
-
 module && (module.exports = pgCustomers);
