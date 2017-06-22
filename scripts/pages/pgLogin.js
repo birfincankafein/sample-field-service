@@ -1,4 +1,4 @@
-/*globals lang, Application*/
+/*globals lang*/
 const System = require('sf-core/device/system');
 const extend = require("js-base/core/extend");
 const Router = require("sf-core/ui/router");
@@ -12,7 +12,11 @@ const userData = require("../model/user");
 const rau = require("../lib/rau");
 const theme = require("../lib/theme");
 const KeyboardType = require('sf-core/ui/keyboardtype');
-// const Application = require("sf-core/application");
+const ScrollView = require("sf-core/ui/scrollview");
+const Color = require("sf-core/ui/color");
+const FlexLayout = require("sf-core/ui/flexlayout");
+const Application = require("sf-core/application");
+const Screen = require('sf-core/device/screen');
 
 const pgLogin = extend(pgLoginDesign)(
     function(_super) {
@@ -23,6 +27,30 @@ const pgLogin = extend(pgLoginDesign)(
         var tiUserName, tiPassword;
         page.onLoad = function onLoad() {
             baseOnLoad && baseOnLoad();
+
+            var svLogin = new ScrollView({
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                align: ScrollView.Align.VERTICAL,
+                backgroundColor: Color.TRANSPARENT,
+                positionType: FlexLayout.PositionType.ABSOLUTE
+            });
+            svLogin.layout.height = Screen.height - ((System.OS === "Android") ?
+                page.statusBar.height : 0);
+            svLogin.layout.width = Screen.width;
+            page.layout.addChild(svLogin);
+
+            for (var i in page.children) {
+                var child = page.children[i];
+                page.layout.removeChild(child);
+                svLogin.layout.addChild(child);
+            }
+            svLogin.children = page.children;
+            page.children = {
+                svLogin: svLogin
+            };
 
             tiUserName = new TextInput();
             Object.assign(tiUserName, {
@@ -56,6 +84,7 @@ const pgLogin = extend(pgLoginDesign)(
                 Application.exit();
             };
 
+            page.layout.applyLayout();
         };
 
         page.onShow = function onShow(data) {
