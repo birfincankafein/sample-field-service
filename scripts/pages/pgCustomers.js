@@ -219,16 +219,28 @@ const pgCustomers = extend(pgCustomersDesign)(
                     filterActive = true;
                 },
                 onTextChanged: function(searchText) {
+                    var start, end, duration;
                     console.log("searched text : " + searchText);
                     var text = searchText.toLowerCase();
+                    if(unfilteredDataset.length === 0)
+                        unfilteredDataset = dataset;
+                    start = new Date();
                     var datasetFitered = unfilteredDataset.filter(function(item) {
                         return item.customFields.CO.Phone.toLowerCase().indexOf(text) > -1 ||
                             item.customFields.CO.Email.toLowerCase().indexOf(text) > -1 ||
                             item.lookupName.toLowerCase().indexOf(text) > -1;
                     });
+                    end = new Date();
+                    duration = end-start;
+                    console.log("Duration for array filter: " + duration);
+                    console.log("item count: " + datasetFitered.length);
+                    start = new Date();
                     bindData({
                         items: datasetFitered
                     }, false);
+                    end = new Date();
+                    duration = end-start;
+                    console.log("Duration bindData: " + duration);
                 }
             });
             svFilter.android.hintTextColor = Color.create("#CCCCCC");

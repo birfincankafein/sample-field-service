@@ -26,7 +26,12 @@ function getCustomers(filter, callback) {
     requestOptions.url += query.join("&");
 
     http.request(requestOptions, function(response) {
+        var start, end, duration;
+        start = new Date();
         var res = JSON.parse(response.body.toString());
+        end = new Date();
+        duration = end - start;
+        console.log("JSON parse & .body.toString duration: " + duration);
         callback && callback(null, res);
     }, function(error) {
         callback && callback(error);
